@@ -1,0 +1,27 @@
+package:
+  id: aom
+  name: aom
+  version: 1.0.0.1
+  kind: lib
+  description: |
+    aom.
+
+base:
+  id: org.deepin.base
+  version: 20.5.0
+
+source:
+  kind: git
+  url: https://github.com/deepin-community/aom.git
+  version: master
+  commit: 1c0325581b6fbf3f72dc5985514aeed6c03a6ace
+  patch:
+  - 0001-doc-Use-libjs-mathjax-rather-than-cloudflare-copy.patch
+variables:
+  extra_args: |
+    -DBUILD_SHARED_LIBS=1 \
+    -DENABLE_TESTS=0 \
+    -DGIT_EXECUTABLE=/nonexistant-binary \
+    -DLIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+build:
+  kind: cmake
